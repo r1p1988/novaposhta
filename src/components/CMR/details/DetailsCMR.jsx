@@ -1,7 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import actFetchCMRRequest from "../../../store/global/action";
 
 function DetailsCMR() {
-  return <div>Статус доставки</div>;
+  const { CMR } = useSelector((state) => state.global);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    (async () => {
+      dispatch(actFetchCMRRequest());
+    })();
+  }, [dispatch]);
+
+  return <div></div>;
 }
 
 export default DetailsCMR;
