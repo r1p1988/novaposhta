@@ -28,7 +28,7 @@ const settings2 = (KEY, city = "Київ") => {
       CityName: `${city}`,
       CityRef: "",
       Page: "1",
-      Limit: "50",
+      Limit: "20",
       Language: "UA",
       TypeOfWarehouseRef: "",
       WarehouseId: "",
