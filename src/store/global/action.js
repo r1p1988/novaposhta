@@ -1,5 +1,8 @@
 import { API, API_KEY } from "../../services";
 
+export const GET_DEPARTMENTS = `GET_DEPARTMENTS`;
+export const GET_CMR = `GET_CMR`;
+
 const settings = (KEY, CMR) => {
   return {
     apiKey: `${KEY}`,
@@ -16,14 +19,38 @@ const settings = (KEY, CMR) => {
   };
 };
 
-export const GET_CMR = `GET_CMR`;
-
-export function GetCMR(payload) {
+const settings2 = (KEY, city = "Київ") => {
   return {
-    type: "GET_CMR",
-    payload: payload,
+    apiKey: `${KEY}`,
+    modelName: "Address",
+    calledMethod: "getWarehouses",
+    methodProperties: {
+      CityName: `${city}`,
+      CityRef: "",
+      Page: "1",
+      Limit: "50",
+      Language: "UA",
+      TypeOfWarehouseRef: "",
+      WarehouseId: "",
+    },
   };
-}
+};
+
+export const actFetchDepartmentsRequest = (city) => {
+  return async (dispatch) => {
+    try {
+      const response = await fetch(API, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(settings2(API_KEY, city)),
+      });
+      const data2 = await response.json();
+      dispatch(GetDepartments(data2.data));
+    } catch (error) {}
+  };
+};
 
 const actFetchCMRRequest = (CMR) => {
   return async (dispatch) => {
@@ -42,3 +69,17 @@ const actFetchCMRRequest = (CMR) => {
 };
 
 export default actFetchCMRRequest;
+
+export function GetDepartments(payload) {
+  return {
+    type: "GET_DEPARTMENTS",
+    payload: payload,
+  };
+}
+
+export function GetCMR(payload) {
+  return {
+    type: "GET_CMR",
+    payload: payload,
+  };
+}

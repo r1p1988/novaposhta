@@ -12,7 +12,6 @@ function StatusTTN() {
 
     dispatch(actFetchCMRRequest(CMR));
   };
-  console.log(CMR);
 
   return (
     <form onSubmit={(e) => handleSubmit(e)}>
