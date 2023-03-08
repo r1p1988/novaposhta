@@ -8,9 +8,9 @@ function DetailsCMR() {
     <>
       {!Array.isArray(CMR) ? (
         <div>
-          <p>Статус доставки: {CMR.TrackingStatusName}</p>
-          <p>Відправлено: {CMR.SenderAddressDescription}</p>
-          <p>Отримано: {CMR.RecipientAddressDescription}</p>
+          <p>Статус доставки: {CMR.Status}</p>
+          <p>Відправлено: {CMR.WarehouseSender}</p>
+          <p>Отримано: {CMR.WarehouseRecipient}</p>
         </div>
       ) : null}
     </>
