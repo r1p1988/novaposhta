@@ -3,18 +3,33 @@ import { API, API_KEY } from "../../services";
 export const GET_DEPARTMENTS = `GET_DEPARTMENTS`;
 export const GET_CMR = `GET_CMR`;
 
-const settings = (KEY, CMR) => {
+// const settings = (KEY, CMR) => {
+//   return {
+//     apiKey: `${KEY}`,
+//     modelName: "TrackingDocument",
+//     calledMethod: "getStatusDocuments",
+//     methodProperties: {
+//       Documents: [
+//         {
+//           DocumentNumber: `${CMR}`,
+//           Phone: "",
+//         },
+//       ],
+//     },
+//   };
+// };
+
+const settings3 = (KEY, CMR) => {
   return {
     apiKey: `${KEY}`,
-    modelName: "TrackingDocument",
-    calledMethod: "getStatusDocuments",
+    modelName: "InternetDocument",
+    calledMethod: "findDocumentByData",
     methodProperties: {
-      Documents: [
-        {
-          DocumentNumber: `${CMR}`,
-          Phone: "",
-        },
-      ],
+      DateFrom: "07.12.2022",
+      DateTo: "08.04.2023",
+      FindByData: `${CMR}`,
+      Limit: 10,
+      Page: 0,
     },
   };
 };
@@ -60,10 +75,10 @@ const actFetchCMRRequest = (CMR) => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(settings(API_KEY, CMR)),
+        body: JSON.stringify(settings3(API_KEY, CMR)),
       });
       const data2 = await response.json();
-      data2.data.map((item) => dispatch(GetCMR(item)));
+      data2.data[0].result.map((item) => dispatch(GetCMR(item)));
     } catch (error) {}
   };
 };
