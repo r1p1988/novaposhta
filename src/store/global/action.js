@@ -2,6 +2,10 @@ import { API, API_KEY } from "../../services";
 
 export const GET_DEPARTMENTS = `GET_DEPARTMENTS`;
 export const GET_CMR = `GET_CMR`;
+export const GET_HISTORY_CMR = `GET_HISTORY_CMR`;
+export const ADD_HISTORY_CMR = `ADD_HISTORY_CMR`;
+export const REMOVE_HISTORY_CMR = `REMOVE_HISTORY_CMR`;
+export const GET_CMR_NUMBER = `GET_CMR_NUMBER`;
 
 const settings = (KEY, CMR) => {
   return {
@@ -95,6 +99,33 @@ export function GetDepartments(payload) {
 export function GetCMR(payload) {
   return {
     type: "GET_CMR",
+    payload: payload,
+  };
+}
+
+export function GetHistoryCMR(payload) {
+  return {
+    type: "GET_HISTORY_CMR",
+    payload: payload,
+  };
+}
+
+export function AddHistoryCMR(payload) {
+  return {
+    type: "ADD_HISTORY_CMR",
+    payload: payload,
+  };
+}
+
+export function RemoveHistory() {
+  return {
+    type: "REMOVE_HISTORY_CMR",
+  };
+}
+
+export function GetCMRNumber(payload) {
+  return {
+    type: "GET_CMR_NUMBER",
     payload: payload,
   };
 }

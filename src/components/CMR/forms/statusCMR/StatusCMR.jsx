@@ -1,16 +1,42 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import actFetchCMRRequest from "../../../../store/global/action";
+import {
+  AddHistoryCMR,
+  GetHistoryCMR,
+  GetCMRNumber,
+} from "../../../../store/global/action";
+import {
+  loadFromLocalStorage,
+  saveToLocalStorage,
+} from "../../../../store/index";
 
 function StatusTTN() {
-  const [CMR, setCMR] = useState("");
+  const { History } = useSelector((state) => state.global);
+  const { CMR_Number } = useSelector((state) => state.global);
+  // const [CMR, setCMR] = useState("");
 
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    History.length !== 0 && saveToLocalStorage(History);
+  }, [History]);
+
+  useEffect(() => {
+    localStorage.length > 0 && dispatch(GetHistoryCMR(loadFromLocalStorage()));
+  }, []);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    // dispatch(GetCMRNumber(CMR));
+    if (CMR_Number) {
+      dispatch(AddHistoryCMR(CMR_Number));
+      dispatch(actFetchCMRRequest(CMR_Number));
+    }
+  };
 
-    dispatch(actFetchCMRRequest(CMR));
+  const handleCMRValue = (e) => {
+    dispatch(GetCMRNumber(e.target.value));
   };
 
   return (
@@ -18,8 +44,9 @@ function StatusTTN() {
       <input
         type="number"
         placeholder="Введіть номер ТТН"
-        value={CMR}
-        onChange={(e) => setCMR(e.target.value)}
+        value={CMR_Number}
+        onChange={(e) => handleCMRValue(e)}
+        // onChange={(e) => setCMR(e.target.value)}
       />
       <button>Get status TTN</button>
     </form>

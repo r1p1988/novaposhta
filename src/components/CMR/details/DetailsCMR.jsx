@@ -6,7 +6,7 @@ function DetailsCMR() {
 
   return (
     <>
-      {!Array.isArray(CMR) ? (
+      {!Array.isArray(CMR) && CMR ? (
         <div>
           <p>Статус доставки: {CMR.Status}</p>
           <p>Відправлено: {CMR.WarehouseSender}</p>
