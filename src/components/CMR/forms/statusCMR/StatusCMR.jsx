@@ -15,6 +15,7 @@ function StatusTTN() {
   const { History } = useSelector((state) => state.global);
   const { CMR_Number } = useSelector((state) => state.global);
   // const [CMR, setCMR] = useState("");
+  const [isShow, setIsShow] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -30,26 +31,36 @@ function StatusTTN() {
     e.preventDefault();
     // dispatch(GetCMRNumber(CMR));
     if (CMR_Number) {
-      dispatch(AddHistoryCMR(CMR_Number));
-      dispatch(actFetchCMRRequest(CMR_Number));
+      if (!CMR_Number.match(/\d{15}/)) {
+        setIsShow(false);
+        dispatch(AddHistoryCMR(CMR_Number));
+        dispatch(actFetchCMRRequest(CMR_Number));
+      } else {
+        console.log(`error`);
+        setIsShow(true);
+      }
     }
   };
 
   const handleCMRValue = (e) => {
+    // console.log(e.target.value.replace(/\./g, ""));
     dispatch(GetCMRNumber(e.target.value));
   };
 
   return (
-    <form onSubmit={(e) => handleSubmit(e)}>
-      <input
-        type="number"
-        placeholder="Введіть номер ТТН"
-        value={CMR_Number}
-        onChange={(e) => handleCMRValue(e)}
-        // onChange={(e) => setCMR(e.target.value)}
-      />
-      <button>Get status TTN</button>
-    </form>
+    <>
+      <form onSubmit={(e) => handleSubmit(e)}>
+        <input
+          type="number"
+          placeholder="Введіть номер ТТН"
+          value={CMR_Number}
+          onChange={(e) => handleCMRValue(e)}
+          // onChange={(e) => setCMR(e.target.value)}
+        />
+        <button>Get status TTN</button>
+      </form>
+      {isShow && <div>Номер не знайден</div>}
+    </>
   );
 }
 
