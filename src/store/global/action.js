@@ -6,6 +6,7 @@ export const GET_HISTORY_CMR = `GET_HISTORY_CMR`;
 export const ADD_HISTORY_CMR = `ADD_HISTORY_CMR`;
 export const REMOVE_HISTORY_CMR = `REMOVE_HISTORY_CMR`;
 export const GET_CMR_NUMBER = `GET_CMR_NUMBER`;
+export const GET_TOTAL_COUNT = `GET_TOTAL_COUNT`;
 
 const settings = (KEY, CMR) => {
   return {
@@ -47,7 +48,7 @@ const settings2 = (KEY, city, WarehouseId, page = 1) => {
       CityName: `${city}`,
       CityRef: "",
       Page: `${page}`,
-      Limit: "50",
+      Limit: "20",
       Language: "UA",
       TypeOfWarehouseRef: "",
       WarehouseId: `${WarehouseId}`,
@@ -67,6 +68,7 @@ export const actFetchDepartmentsRequest = (city, WarehouseId, page) => {
       });
       const data2 = await response.json();
       dispatch(GetDepartments(data2.data));
+      dispatch(GetTotalCount(data2.info.totalCount));
     } catch (error) {}
   };
 };
@@ -126,6 +128,13 @@ export function RemoveHistory() {
 export function GetCMRNumber(payload) {
   return {
     type: "GET_CMR_NUMBER",
+    payload: payload,
+  };
+}
+
+export function GetTotalCount(payload) {
+  return {
+    type: "GET_TOTAL_COUNT",
     payload: payload,
   };
 }

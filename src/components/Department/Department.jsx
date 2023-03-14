@@ -6,6 +6,7 @@ import Pagination from "../../Pagination";
 
 function Department({ currentPage, setCurrentPage }) {
   const { Departments } = useSelector((state) => state.global);
+  const { Total_Count } = useSelector((state) => state.global);
 
   // const dispatch = useDispatch();
 
@@ -18,6 +19,7 @@ function Department({ currentPage, setCurrentPage }) {
     // const lastPageIndex = firstPageIndex + PageSize;
     const firstPageIndex = 0;
     const lastPageIndex = Departments.length;
+    // const data = Departments.data;
     return Departments.slice(firstPageIndex, lastPageIndex);
   }, [Departments, currentPage]);
 
@@ -66,7 +68,7 @@ function Department({ currentPage, setCurrentPage }) {
             className="pagination-bar"
             currentPage={currentPage}
             // totalCount={Departments.length}
-            totalCount={3947}
+            totalCount={Total_Count}
             pageSize={PageSize}
             onPageChange={(page) => setCurrentPage(page)}
           />
