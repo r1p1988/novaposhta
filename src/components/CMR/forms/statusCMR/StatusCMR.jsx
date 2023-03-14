@@ -11,6 +11,10 @@ import {
   saveToLocalStorage,
 } from "../../../../store/index";
 
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
+import Box from "@mui/material/Box";
+
 function StatusTTN() {
   const { History } = useSelector((state) => state.global);
   const { CMR_Number } = useSelector((state) => state.global);
@@ -49,16 +53,23 @@ function StatusTTN() {
 
   return (
     <>
-      <form onSubmit={(e) => handleSubmit(e)}>
-        <input
-          type="number"
-          placeholder="Введіть номер ТТН"
+      <Box
+        component="form"
+        noValidate
+        autoComplete="off"
+        onSubmit={(e) => handleSubmit(e)}
+      >
+        <TextField
+          label="Номер ТТН"
           value={CMR_Number}
+          size="small"
+          type="number"
           onChange={(e) => handleCMRValue(e)}
-          // onChange={(e) => setCMR(e.target.value)}
         />
-        <button>Get status TTN</button>
-      </form>
+        <Button variant="contained" type="submit">
+          Get status TTN
+        </Button>
+      </Box>
       {isShow && <div>Номер не знайден</div>}
     </>
   );
