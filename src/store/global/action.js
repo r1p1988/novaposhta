@@ -38,7 +38,7 @@ const settings = (KEY, CMR) => {
 //   };
 // };
 
-const settings2 = (KEY, city = "Київ") => {
+const settings2 = (KEY, city, WarehouseId, page = 1) => {
   return {
     apiKey: `${KEY}`,
     modelName: "Address",
@@ -46,16 +46,16 @@ const settings2 = (KEY, city = "Київ") => {
     methodProperties: {
       CityName: `${city}`,
       CityRef: "",
-      Page: "1",
-      Limit: "20",
+      Page: `${page}`,
+      Limit: "50",
       Language: "UA",
       TypeOfWarehouseRef: "",
-      WarehouseId: "",
+      WarehouseId: `${WarehouseId}`,
     },
   };
 };
 
-export const actFetchDepartmentsRequest = (city) => {
+export const actFetchDepartmentsRequest = (city, WarehouseId, page) => {
   return async (dispatch) => {
     try {
       const response = await fetch(API, {
@@ -63,7 +63,7 @@ export const actFetchDepartmentsRequest = (city) => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(settings2(API_KEY, city)),
+        body: JSON.stringify(settings2(API_KEY, city, WarehouseId, page)),
       });
       const data2 = await response.json();
       dispatch(GetDepartments(data2.data));
