@@ -1,6 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router";
 
+import Button from "@mui/material/Button";
+
 function Header() {
   const navigation = useNavigate();
 
@@ -14,8 +16,12 @@ function Header() {
 
   return (
     <>
-      <button onClick={() => handleCheckCMR()}>Перевірити ТТН</button>
-      <button onClick={() => handleDepartmentList()}>Список відділень</button>
+      <Button variant="contained" onClick={() => handleCheckCMR()}>
+        Перевірити ТТН
+      </Button>
+      <Button variant="contained" onClick={() => handleDepartmentList()}>
+        Список відділень
+      </Button>
     </>
   );
 }
