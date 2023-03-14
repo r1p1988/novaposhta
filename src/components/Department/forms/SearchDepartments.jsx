@@ -28,7 +28,7 @@ function SearchDepartments({
       <input
         type="text"
         placeholder="Місто"
-        value={city}
+        // value={city}
         onChange={(e) => setCity(e.target.value)}
       />
       <input
