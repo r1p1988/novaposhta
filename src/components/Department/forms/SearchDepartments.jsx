@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
 import { actFetchDepartmentsRequest } from "../../../store/global/action";
@@ -7,6 +7,10 @@ function SearchDepartments() {
   const [city, setCity] = useState("");
 
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(actFetchDepartmentsRequest("Київ"));
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();

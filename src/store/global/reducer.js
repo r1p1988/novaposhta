@@ -10,7 +10,7 @@ import {
 const INITIAL_STATE = {
   CMR: [],
   CMR_Number: ``,
-  Departments: [],
+  Departments: ``,
   History: [],
 };
 
