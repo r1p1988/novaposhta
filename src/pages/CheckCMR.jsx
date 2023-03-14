@@ -7,6 +7,7 @@ import Header from "../components/header/Header";
 function CheckCMR() {
   return (
     <>
+      <h1>NovaPoshta Application</h1>
       <Header />
       <StatusCMR />
       <div>
