@@ -7,6 +7,7 @@ export const ADD_HISTORY_CMR = `ADD_HISTORY_CMR`;
 export const REMOVE_HISTORY_CMR = `REMOVE_HISTORY_CMR`;
 export const GET_CMR_NUMBER = `GET_CMR_NUMBER`;
 export const GET_TOTAL_COUNT = `GET_TOTAL_COUNT`;
+export const DELETE_CMR_NUMBER = `DELETE_CMR_NUMBER`;
 
 const settings = (KEY, CMR) => {
   return {
@@ -129,6 +130,12 @@ export function GetCMRNumber(payload) {
   return {
     type: "GET_CMR_NUMBER",
     payload: payload,
+  };
+}
+
+export function DeleteCMRNumber() {
+  return {
+    type: "DELETE_CMR_NUMBER",
   };
 }
 
