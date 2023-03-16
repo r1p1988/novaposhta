@@ -7,27 +7,34 @@ function DetailsCMR() {
   const { CMR } = useSelector((state) => state.global);
 
   return (
-    <>
+    <Box
+      component="div"
+      sx={{
+        width: 500,
+        height: 200,
+        p: 1,
+        m: 1,
+        backgroundColor: "#fff4f4",
+        color: `#1B1212`,
+        border: "1px solid #b3abab",
+        borderRadius: 2,
+        textAlign: `left`,
+      }}
+    >
       {!Array.isArray(CMR) && CMR ? (
-        <Box
-          component="div"
-          sx={{
-            width: 500,
-            height: 200,
-            p: 1,
-            m: 1,
-            backgroundColor: "text.disabled",
-            color: `#fff`,
-            border: "1px solid",
-            borderRadius: 2,
-          }}
-        >
-          <p>Статус доставки: {CMR.Status}</p>
-          <p>Відправлено: {CMR.WarehouseSender}</p>
-          <p>Отримано: {CMR.WarehouseRecipient}</p>
-        </Box>
+        <>
+          <p>
+            <b>Статус доставки:</b> {CMR.Status}
+          </p>
+          <p>
+            <b>Відправлено:</b> {CMR.WarehouseSender}
+          </p>
+          <p>
+            <b>Отримано:</b> {CMR.WarehouseRecipient}
+          </p>
+        </>
       ) : null}
-    </>
+    </Box>
   );
 }
 

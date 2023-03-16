@@ -4,6 +4,11 @@ import DepartmentItem from "./DepartmentItem";
 import Pagination from "../../Pagination";
 // import actFetchDepartmentsRequest from "../../store/global/action";
 
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+
 function Department({ currentPage, setCurrentPage }) {
   const { Departments } = useSelector((state) => state.global);
   const { Total_Count } = useSelector((state) => state.global);
@@ -50,20 +55,29 @@ function Department({ currentPage, setCurrentPage }) {
     <>
       {Departments.length !== 0 ? (
         <>
-          <table>
-            <thead>
-              <tr>
+          <Table
+            sx={{
+              bgcolor: `#fff4f4`,
+              color: `#1B1212`,
+              border: "1px solid #b3abab",
+              borderRadius: 2,
+            }}
+            stickyHeader
+            aria-label="sticky table"
+          >
+            <TableHead>
+              <TableRow>
                 <th>Місто</th>
                 <th>Адреса</th>
                 <th>Обмеження ваги</th>
-              </tr>
-            </thead>
-            <tbody>
+              </TableRow>
+            </TableHead>
+            <TableBody>
               {currentTableData.map((item) => (
                 <DepartmentItem key={item.Number} item={item} />
               ))}
-            </tbody>
-          </table>
+            </TableBody>
+          </Table>
           <Pagination
             className="pagination-bar"
             currentPage={currentPage}

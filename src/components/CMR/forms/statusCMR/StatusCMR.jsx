@@ -47,30 +47,39 @@ function StatusTTN() {
   };
 
   const handleCMRValue = (e) => {
-    // console.log(e.target.value.replace(/\./g, ""));
-    dispatch(GetCMRNumber(e.target.value));
+    dispatch(GetCMRNumber(e.target.value.replace(/[^0-9]+/g, "")));
   };
 
   return (
     <>
       <Box
+        sx={{ mb: 2 }}
         component="form"
         noValidate
         autoComplete="off"
         onSubmit={(e) => handleSubmit(e)}
       >
         <TextField
-          label="Номер ТТН"
+          sx={{ mr: 2 }}
+          label="Номер накладної"
           value={CMR_Number}
           size="small"
-          type="number"
+          // type="number"
           onChange={(e) => handleCMRValue(e)}
         />
-        <Button variant="contained" type="submit">
-          Get status TTN
+        <Button
+          sx={{ textTransform: `none` }}
+          variant="contained"
+          type="submit"
+        >
+          Відстежити
         </Button>
       </Box>
-      {isShow && <div>Номер не знайден</div>}
+      {isShow && (
+        <Box sx={{ color: `black` }} component="div">
+          Номер не знайден
+        </Box>
+      )}
     </>
   );
 }
