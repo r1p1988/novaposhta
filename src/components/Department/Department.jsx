@@ -68,6 +68,7 @@ function Department({ currentPage, setCurrentPage }) {
             <TableHead>
               <TableRow>
                 <th>Місто</th>
+                <th>Відділення / Поштомат</th>
                 <th>Адреса</th>
                 <th>Обмеження ваги</th>
               </TableRow>
