@@ -6,6 +6,7 @@ import { actFetchDepartmentsRequest } from "../../../store/global/action";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
+import Input from "@mui/joy/Input";
 
 function SearchDepartments({
   city,

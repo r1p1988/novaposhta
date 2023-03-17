@@ -1,10 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 
 import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
+import Modal from "@mui/material/Modal";
+import Backdrop from "@mui/material/Backdrop";
+import Fade from "@mui/material/Fade";
+import Box from "@mui/material/Box";
 
-// CategoryOfWarehouse: "Postomat";
-// CategoryOfWarehouse: "Branch";
+// import Modal from "../Modal/Modal";
+
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  borderRadius: 4,
+  boxShadow: 24,
+  p: 4,
+};
 
 function DepartmentItem({ item }) {
   const WarehouseCategory = {
@@ -12,37 +27,233 @@ function DepartmentItem({ item }) {
     Branch: `Відд`,
   };
 
+  const ModalWarehouseCategory = {
+    Postomat: `поштомат`,
+    Branch: `відділення`,
+  };
+
+  const Services = {
+    BicycleParking: `Велопарковка`,
+    CanGetMoneyTransfer: `Грошові перекази`,
+    InternationalShipping: `Міжнародне відправлення`,
+    POSTerminal: `Оплата карткою`,
+    SelfServiceWorkplacesCount: `Зона самообслуговування`,
+  };
+
+  const [modalActive, SetModalActive] = useState(false);
+  const handleOpen = () => SetModalActive(true);
+  const handleClose = () => SetModalActive(false);
+
+  // const handleSetModalActive = () => {
+  //   SetModalActive(true);
+  // };
+
   return (
-    <TableRow>
-      <TableCell
-        sx={{
-          textAlign: `center`,
+    <>
+      <TableRow>
+        <TableCell
+          sx={{
+            textAlign: `center`,
+          }}
+        >
+          {item.CityDescription}
+        </TableCell>
+        <TableCell
+          sx={{
+            textAlign: `center`,
+          }}
+        >
+          <button onClick={() => handleOpen()}>
+            {WarehouseCategory[item.CategoryOfWarehouse]} №{item.Number}
+          </button>
+        </TableCell>
+        <TableCell
+          sx={{
+            textAlign: `left`,
+          }}
+        >
+          {item.ShortAddress}
+        </TableCell>
+        <TableCell
+          sx={{
+            textAlign: `center`,
+          }}
+        >
+          До {item.PlaceMaxWeightAllowed} кг
+        </TableCell>
+      </TableRow>
+      <Modal
+        open={modalActive}
+        onClose={handleClose}
+        closeAfterTransition
+        slots={{ backdrop: Backdrop }}
+        slotProps={{
+          backdrop: {
+            timeout: 500,
+          },
         }}
       >
-        {item.CityDescription}
-      </TableCell>
-      <TableCell
-        sx={{
-          textAlign: `center`,
-        }}
-      >
-        {WarehouseCategory[item.CategoryOfWarehouse]} №{item.Number}
-      </TableCell>
-      <TableCell
-        sx={{
-          textAlign: `left`,
-        }}
-      >
-        {item.ShortAddress}
-      </TableCell>
-      <TableCell
-        sx={{
-          textAlign: `center`,
-        }}
-      >
-        До {item.PlaceMaxWeightAllowed} кг
-      </TableCell>
-    </TableRow>
+        <Fade in={modalActive}>
+          <Box sx={style}>
+            <h2>
+              {item.CityDescription}{" "}
+              {ModalWarehouseCategory[item.CategoryOfWarehouse]} №{item.Number}
+            </h2>
+            <p style={{ textAlign: `left` }}>
+              <b>Адреса:</b>{" "}
+              {item.ShortAddress.substring(
+                item.ShortAddress.indexOf(" "),
+                item.ShortAddress.length
+              )}
+            </p>
+            <p style={{ textAlign: `left` }}>
+              <b>Цифрова адреса:</b> {item.WarehouseIndex}
+            </p>
+            <p style={{ textAlign: `left` }}>
+              <b>Тип:</b>
+            </p>
+            <p style={{ textAlign: `left` }}>
+              <b>Обмеження ваги:</b> До {item.PlaceMaxWeightAllowed} кг
+            </p>
+            <p style={{ textAlign: `left` }}>
+              <b>Обмеження за габаритами (см):</b>{" "}
+              {item.SendingLimitationsOnDimensions.Width} x{" "}
+              {item.SendingLimitationsOnDimensions.Height} x{" "}
+              {item.SendingLimitationsOnDimensions.Length}
+            </p>
+            <p style={{ textAlign: `left` }}>
+              <b>Доступні послуги та сервіси:</b>
+            </p>
+            <ul style={{ textAlign: `left` }}>
+              <li>{item.BicycleParking === "1" && Services.BicycleParking}</li>
+              <li>
+                {item.CanGetMoneyTransfer === "1" &&
+                  Services.CanGetMoneyTransfer}
+              </li>
+              <li>
+                {item.InternationalShipping === "1" &&
+                  Services.InternationalShipping}
+              </li>
+              <li>{item.POSTerminal === "1" && Services.POSTerminal}</li>
+              <li>
+                {item.SelfServiceWorkplacesCount === "1" &&
+                  Services.SelfServiceWorkplacesCount}
+              </li>
+            </ul>
+            <table>
+              <thead>
+                <tr>
+                  <td></td>
+                  <td>пн</td>
+                  <td>вт</td>
+                  <td>ср</td>
+                  <td>чт</td>
+                  <td>пт</td>
+                  <td>сб</td>
+                  <td>нд</td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Графік роботи</td>
+                  {Object.values(item.Schedule).map((items) => (
+                    <td>{items}</td>
+                  ))}
+                </tr>
+                <tr>
+                  <td>Прийом відправлення для відправки в той же день</td>
+                  {Object.values(item.Delivery).map((items) => (
+                    <td>{items}</td>
+                  ))}
+                </tr>
+                <tr>
+                  <td>Час прибуття відправлень</td>
+                  {Object.values(item.Reception).map((items) => (
+                    <td>{items}</td>
+                  ))}
+                </tr>
+              </tbody>
+            </table>
+          </Box>
+        </Fade>
+      </Modal>
+      {/* <Modal active={modalActive} setActive={SetModalActive}>
+        <h2>
+          {item.CityDescription} {WarehouseCategory[item.CategoryOfWarehouse]} №
+          {item.Number}
+        </h2>
+        <p style={{ textAlign: `left` }}>
+          <b>Адреса:</b> {item.ShortAddress}
+        </p>
+        <p style={{ textAlign: `left` }}>
+          <b>Цифрова адреса:</b> {item.WarehouseIndex}
+        </p>
+        <p style={{ textAlign: `left` }}>
+          <b>Тип:</b>
+        </p>
+        <p style={{ textAlign: `left` }}>
+          <b>Обмеження ваги:</b> До {item.PlaceMaxWeightAllowed} кг
+        </p>
+        <p style={{ textAlign: `left` }}>
+          <b>Обмеження за габаритами (см):</b>{" "}
+          {item.SendingLimitationsOnDimensions.Width} x{" "}
+          {item.SendingLimitationsOnDimensions.Height} x{" "}
+          {item.SendingLimitationsOnDimensions.Length}
+        </p>
+        <p style={{ textAlign: `left` }}>
+          <b>Доступні послуги та сервіси:</b>
+        </p>
+        <ul style={{ textAlign: `left` }}>
+          <li>{item.BicycleParking === "1" && Services.BicycleParking}</li>
+          <li>
+            {item.CanGetMoneyTransfer === "1" && Services.CanGetMoneyTransfer}
+          </li>
+          <li>
+            {item.InternationalShipping === "1" &&
+              Services.InternationalShipping}
+          </li>
+          <li>{item.POSTerminal === "1" && Services.POSTerminal}</li>
+          <li>
+            {item.SelfServiceWorkplacesCount === "1" &&
+              Services.SelfServiceWorkplacesCount}
+          </li>
+        </ul>
+        <table>
+          <thead>
+            <tr>
+              <td></td>
+              <td>пн</td>
+              <td>вт</td>
+              <td>ср</td>
+              <td>чт</td>
+              <td>пт</td>
+              <td>сб</td>
+              <td>нд</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Графік роботи</td>
+              {Object.values(item.Schedule).map((items) => (
+                <td>{items}</td>
+              ))}
+            </tr>
+            <tr>
+              <td>Прийом відправлення для відправки в той же день</td>
+              {Object.values(item.Delivery).map((items) => (
+                <td>{items}</td>
+              ))}
+            </tr>
+            <tr>
+              <td>Час прибуття відправлень</td>
+              {Object.values(item.Reception).map((items) => (
+                <td>{items}</td>
+              ))}
+            </tr>
+          </tbody>
+        </table>
+      </Modal> */}
+    </>
   );
 }
 
