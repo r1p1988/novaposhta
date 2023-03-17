@@ -1,7 +1,8 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import DepartmentItem from "./DepartmentItem";
 import Pagination from "../../Pagination";
+import Modal from "../Modal/Modal";
 // import actFetchDepartmentsRequest from "../../store/global/action";
 
 import Table from "@mui/material/Table";
@@ -68,6 +69,7 @@ function Department({ currentPage, setCurrentPage }) {
             <TableHead>
               <TableRow>
                 <th>Місто</th>
+                <th>Відділення / Поштомат</th>
                 <th>Адреса</th>
                 <th>Обмеження ваги</th>
               </TableRow>
@@ -86,6 +88,7 @@ function Department({ currentPage, setCurrentPage }) {
             pageSize={PageSize}
             onPageChange={(page) => setCurrentPage(page)}
           />
+          {/* <Modal active={modalActive} setActive={SetModalActive} /> */}
         </>
       ) : (
         <div>

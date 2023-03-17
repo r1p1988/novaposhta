@@ -5,6 +5,7 @@ import {
   AddHistoryCMR,
   GetHistoryCMR,
   GetCMRNumber,
+  DeleteCMRNumber,
 } from "../../../../store/global/action";
 import {
   loadFromLocalStorage,
@@ -48,6 +49,9 @@ function StatusTTN() {
 
   const handleCMRValue = (e) => {
     dispatch(GetCMRNumber(e.target.value.replace(/[^0-9]+/g, "")));
+    if (!e.target.value) {
+      dispatch(DeleteCMRNumber());
+    }
   };
 
   return (

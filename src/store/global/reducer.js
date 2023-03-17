@@ -6,6 +6,7 @@ import {
   REMOVE_HISTORY_CMR,
   GET_CMR_NUMBER,
   GET_TOTAL_COUNT,
+  DELETE_CMR_NUMBER,
 } from "./action";
 
 const INITIAL_STATE = {
@@ -22,6 +23,8 @@ export default function cmrReducer(state = INITIAL_STATE, { type, payload }) {
       return { ...state, CMR: payload };
     case GET_CMR_NUMBER:
       return { ...state, CMR_Number: payload };
+    case DELETE_CMR_NUMBER:
+      return { ...state, CMR: `` };
     case GET_TOTAL_COUNT:
       return { ...state, Total_Count: payload };
     case GET_DEPARTMENTS:
