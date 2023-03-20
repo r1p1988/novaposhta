@@ -2,8 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import actFetchCMRRequest, { GetCMRNumber } from "../../../store/global/action";
 
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemText from "@mui/material/ListItemText";
+import { ListItemButton, ListItemText } from "@mui/material";
 
 function HistoryItem({ item }) {
   const dispatch = useDispatch();

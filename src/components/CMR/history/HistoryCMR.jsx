@@ -3,9 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RemoveHistory } from "../../../store/global/action";
 import HistoryItem from "./HistoryItem";
 
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import List from "@mui/material/List";
+import { Box, Button, List } from "@mui/material";
 
 function HistoryCMR() {
   const { History } = useSelector((state) => state.global);
