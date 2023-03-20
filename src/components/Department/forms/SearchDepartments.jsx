@@ -12,8 +12,11 @@ function SearchDepartments({
   setCurrentPage,
   WarehouseId,
   setWarehouseId,
+  isShow,
+  setIsShow,
 }) {
   // const [city, setCity] = useState("");
+  // const [isShow, setIsShow] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -23,37 +26,53 @@ function SearchDepartments({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setCurrentPage(1);
-    dispatch(actFetchDepartmentsRequest(city, WarehouseId));
+    if (city === "" && WarehouseId === "") {
+      setIsShow(true);
+    } else {
+      setIsShow(false);
+      setCurrentPage(1);
+      dispatch(actFetchDepartmentsRequest(city, WarehouseId));
+    }
   };
   return (
-    <Box
-      sx={{ mb: 2 }}
-      component="form"
-      noValidate
-      autoComplete="off"
-      onSubmit={(e) => handleSubmit(e)}
-    >
-      <TextField
-        sx={{ mr: 2 }}
-        label="Місто"
-        // value={city}
-        size="small"
-        // type="number"
-        onChange={(e) => setCity(e.target.value)}
-      />
-      <TextField
-        sx={{ mr: 2 }}
-        label="Номер відділення"
-        value={WarehouseId}
-        size="small"
-        // type="number"
-        onChange={(e) => setWarehouseId(e.target.value)}
-      />
-      <Button sx={{ textTransform: `none` }} variant="contained" type="submit">
-        Знайти
-      </Button>
-    </Box>
+    <>
+      <Box
+        sx={{ mb: 2 }}
+        component="form"
+        noValidate
+        autoComplete="off"
+        onSubmit={(e) => handleSubmit(e)}
+      >
+        <TextField
+          sx={{ mr: 2 }}
+          label="Місто"
+          value={city}
+          size="small"
+          // type="number"
+          onChange={(e) => setCity(e.target.value)}
+        />
+        <TextField
+          sx={{ mr: 2 }}
+          label="Номер відділення"
+          value={WarehouseId}
+          size="small"
+          // type="number"
+          onChange={(e) => setWarehouseId(e.target.value)}
+        />
+        <Button
+          sx={{ textTransform: `none` }}
+          variant="contained"
+          type="submit"
+        >
+          Знайти
+        </Button>
+      </Box>
+      {isShow ? (
+        <Box sx={{ color: `black` }} component="div">
+          Місто чи відділення не знайдено.
+        </Box>
+      ) : null}
+    </>
   );
 }
 

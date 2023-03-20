@@ -1,17 +1,17 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import DepartmentItem from "./DepartmentItem";
 import Pagination from "../../Pagination";
 import Modal from "../Modal/Modal";
-// import actFetchDepartmentsRequest from "../../store/global/action";
+import actFetchDepartmentsRequest from "../../store/global/action";
 
 import { Table, TableBody, TableHead, TableRow } from "@mui/material";
 
-function Department({ currentPage, setCurrentPage }) {
+function Department({ currentPage, setCurrentPage, city, WarehouseId }) {
   const { Departments } = useSelector((state) => state.global);
   const { Total_Count } = useSelector((state) => state.global);
 
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   let PageSize = 20;
 
@@ -22,13 +22,14 @@ function Department({ currentPage, setCurrentPage }) {
     // const lastPageIndex = firstPageIndex + PageSize;
     const firstPageIndex = 0;
     const lastPageIndex = Departments.length;
-    // const data = Departments.data;
     return Departments.slice(firstPageIndex, lastPageIndex);
   }, [Departments, currentPage]);
 
+  console.log(currentTableData);
+
   // useEffect(() => {
   //   dispatch(actFetchDepartmentsRequest(currentPage));
-  // }, [currentPage]);
+  // }, [Departments]);
 
   // const renderTable = (list) => {
   //   <table>
@@ -72,8 +73,8 @@ function Department({ currentPage, setCurrentPage }) {
               </TableRow>
             </TableHead>
             <TableBody>
-              {currentTableData.map((item) => (
-                <DepartmentItem key={item.Number} item={item} />
+              {currentTableData.map((item, idx) => (
+                <DepartmentItem key={item.SiteKey} item={item} />
               ))}
             </TableBody>
           </Table>

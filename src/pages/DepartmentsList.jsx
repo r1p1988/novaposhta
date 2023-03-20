@@ -11,6 +11,7 @@ function DepartmentsList() {
   const [currentPage, setCurrentPage] = useState(1);
   const [city, setCity] = useState("Київ");
   const [WarehouseId, setWarehouseId] = useState("");
+  const [isShow, setIsShow] = useState(false);
   const dispatch = useDispatch();
 
   // useEffect(() => {
@@ -18,6 +19,7 @@ function DepartmentsList() {
   // }, []);
 
   useEffect(() => {
+    // if (city !== "" && WarehouseId !== "")
     dispatch(actFetchDepartmentsRequest(city, WarehouseId, currentPage));
   }, [currentPage]);
 
@@ -70,8 +72,17 @@ function DepartmentsList() {
           WarehouseId={WarehouseId}
           setWarehouseId={setWarehouseId}
           setCurrentPage={setCurrentPage}
+          isShow={isShow}
+          setIsShow={setIsShow}
         />
-        <Department currentPage={currentPage} setCurrentPage={setCurrentPage} />
+        {!isShow ? (
+          <Department
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+            city={city}
+            WarehouseId={WarehouseId}
+          />
+        ) : null}
       </Box>
     </>
   );
