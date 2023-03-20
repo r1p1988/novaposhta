@@ -58,6 +58,7 @@ function DepartmentItem({ item }) {
     InternationalShipping: `Міжнародне відправлення`,
     POSTerminal: `Оплата карткою`,
     SelfServiceWorkplacesCount: `Зона самообслуговування`,
+    GeneratorEnabled: `Генератор`,
   };
 
   const [modalActive, SetModalActive] = useState(false);
@@ -149,25 +150,33 @@ function DepartmentItem({ item }) {
               {item.SendingLimitationsOnDimensions.Height} x{" "}
               {item.SendingLimitationsOnDimensions.Length}
             </p>
-            <p style={{ textAlign: `left`, margin: `3px` }}>
-              <b>Доступні послуги та сервіси:</b>
-            </p>
-            <ul style={{ textAlign: `left`, margin: `3px` }}>
-              <li>{item.BicycleParking === "1" && Services.BicycleParking}</li>
-              <li>
-                {item.CanGetMoneyTransfer === "1" &&
-                  Services.CanGetMoneyTransfer}
-              </li>
-              <li>
-                {item.InternationalShipping === "1" &&
-                  Services.InternationalShipping}
-              </li>
-              <li>{item.POSTerminal === "1" && Services.POSTerminal}</li>
-              <li>
-                {item.SelfServiceWorkplacesCount === "1" &&
-                  Services.SelfServiceWorkplacesCount}
-              </li>
-            </ul>
+            {item.CategoryOfWarehouse !== `Postomat` ? (
+              <>
+                <p style={{ textAlign: `left`, margin: `3px` }}>
+                  <b>Доступні послуги та сервіси:</b>
+                </p>
+                <ul style={{ textAlign: `left`, margin: `3px` }}>
+                  {item.BicycleParking === "1" ? (
+                    <li>{Services.BicycleParking}</li>
+                  ) : null}
+                  {item.CanGetMoneyTransfer === "1" ? (
+                    <li>{Services.CanGetMoneyTransfer}</li>
+                  ) : null}
+                  {item.InternationalShipping === "1" ? (
+                    <li>{Services.InternationalShipping}</li>
+                  ) : null}
+                  {item.POSTerminal === "1" ? (
+                    <li>{Services.POSTerminal}</li>
+                  ) : null}
+                  {item.SelfServiceWorkplacesCount === "1" ? (
+                    <li>{Services.SelfServiceWorkplacesCount}</li>
+                  ) : null}
+                  {item.GeneratorEnabled === "1" ? (
+                    <li>{Services.GeneratorEnabled}</li>
+                  ) : null}
+                </ul>
+              </>
+            ) : null}
 
             <Table
               sx={{
