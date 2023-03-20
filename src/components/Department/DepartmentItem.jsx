@@ -45,11 +45,13 @@ function DepartmentItem({ item }) {
   const WarehouseCategory = {
     Postomat: `П-т`,
     Branch: `Відд`,
+    Store: `пункт`,
   };
 
   const ModalWarehouseCategory = {
     Postomat: `поштомат`,
     Branch: `відділення`,
+    Store: `пункт «нова пошта»`,
   };
 
   const Services = {
