@@ -1,8 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router";
 
-import Button from "@mui/material/Button";
-import ButtonGroup from "@mui/material/ButtonGroup";
+import { Button, ButtonGroup } from "@mui/material";
 
 function Header() {
   const navigation = useNavigate();

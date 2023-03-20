@@ -5,10 +5,7 @@ import Pagination from "../../Pagination";
 import Modal from "../Modal/Modal";
 // import actFetchDepartmentsRequest from "../../store/global/action";
 
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
+import { Table, TableBody, TableHead, TableRow } from "@mui/material";
 
 function Department({ currentPage, setCurrentPage }) {
   const { Departments } = useSelector((state) => state.global);

@@ -1,22 +1,18 @@
 import React, { useState } from "react";
 
-// import Table from "@mui/material/Table";
-// import TableBody from "@mui/material/TableBody";
-// import TableHead from "@mui/material/TableHead";
-// import TableRow from "@mui/material/TableRow";
-// import TableCell from "@mui/material/TableCell";
 import {
   Table,
   TableBody,
   TableHead,
   TableRow,
   TableCell,
+  Modal,
+  Backdrop,
+  Fade,
+  Box,
+  ThemeProvider,
+  createTheme,
 } from "@mui/material";
-import Modal from "@mui/material/Modal";
-import Backdrop from "@mui/material/Backdrop";
-import Fade from "@mui/material/Fade";
-import Box from "@mui/material/Box";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 // import Modal from "../Modal/Modal";
 
@@ -30,7 +26,6 @@ const style = {
   borderRadius: 4,
   boxShadow: 24,
   p: 4,
-  // maxHeight: 500,
 };
 
 const theme = createTheme({
@@ -51,8 +46,6 @@ function DepartmentItem({ item }) {
     Postomat: `П-т`,
     Branch: `Відд`,
   };
-
-  // const gunnarStyle = { height: "5px !important", padding: "0px" };
 
   const ModalWarehouseCategory = {
     Postomat: `поштомат`,
@@ -88,11 +81,19 @@ function DepartmentItem({ item }) {
         <TableCell
           sx={{
             textAlign: `center`,
+            fontWeight: `bold`,
+            // borderBottom: `1px solid #999`,
           }}
         >
-          <button onClick={() => handleOpen()}>
+          <span
+            onClick={() => handleOpen()}
+            style={{ borderBottom: `1px solid #999`, cursor: `pointer` }}
+          >
+            {WarehouseCategory[item.CategoryOfWarehouse]} {item.Number}
+          </span>
+          {/* <button onClick={() => handleOpen()}>
             {WarehouseCategory[item.CategoryOfWarehouse]} №{item.Number}
-          </button>
+          </button> */}
         </TableCell>
         <TableCell
           sx={{

@@ -12,9 +12,7 @@ import {
   saveToLocalStorage,
 } from "../../../../store/index";
 
-import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
-import Box from "@mui/material/Box";
+import { TextField, Button, Box } from "@mui/material";
 
 function StatusTTN() {
   const { History } = useSelector((state) => state.global);
