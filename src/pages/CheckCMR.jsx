@@ -1,4 +1,5 @@
 import React from "react";
+
 import DetailsCMR from "../components/CMR/details/DetailsCMR";
 import StatusCMR from "../components/CMR/forms/statusCMR/StatusCMR";
 import HistoryCMR from "../components/CMR/history/HistoryCMR";
@@ -43,7 +44,6 @@ function CheckCMR() {
             src="./img/logo1.svg"
             alt="нова пошта"
           />
-          {/* <h1>NovaPost Application</h1> */}
         </Box>
         <Header />
         <StatusCMR />

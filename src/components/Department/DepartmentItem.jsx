@@ -15,8 +15,6 @@ import {
   createTheme,
 } from "@mui/material";
 
-// import Modal from "../Modal/Modal";
-
 const style = {
   position: "absolute",
   top: "50%",
@@ -73,9 +71,6 @@ function DepartmentItem({ item }) {
   const WareHouseTypes = Warehouse.map((items) => {
     if (items.Ref === item.TypeOfWarehouse) return items.Description;
   });
-  // const handleSetModalActive = () => {
-  //   SetModalActive(true);
-  // };
 
   return (
     <>
@@ -91,7 +86,6 @@ function DepartmentItem({ item }) {
           sx={{
             textAlign: `center`,
             fontWeight: `bold`,
-            // borderBottom: `1px solid #999`,
           }}
         >
           <span
@@ -100,9 +94,6 @@ function DepartmentItem({ item }) {
           >
             {WarehouseCategory[item.CategoryOfWarehouse]} {item.Number}
           </span>
-          {/* <button onClick={() => handleOpen()}>
-            {WarehouseCategory[item.CategoryOfWarehouse]} №{item.Number}
-          </button> */}
         </TableCell>
         <TableCell
           sx={{
@@ -196,8 +187,6 @@ function DepartmentItem({ item }) {
                 textAlign: `center`,
                 justifyContent: `center`,
                 marginTop: `10px`,
-                // size: "small",
-                // height: `100`,
               }}
             >
               <TableHead>
@@ -246,82 +235,6 @@ function DepartmentItem({ item }) {
           </Box>
         </Fade>
       </Modal>
-      {/* <Modal active={modalActive} setActive={SetModalActive}>
-        <h2>
-          {item.CityDescription} {WarehouseCategory[item.CategoryOfWarehouse]} №
-          {item.Number}
-        </h2>
-        <p style={{ textAlign: `left` }}>
-          <b>Адреса:</b> {item.ShortAddress}
-        </p>
-        <p style={{ textAlign: `left` }}>
-          <b>Цифрова адреса:</b> {item.WarehouseIndex}
-        </p>
-        <p style={{ textAlign: `left` }}>
-          <b>Тип:</b>
-        </p>
-        <p style={{ textAlign: `left` }}>
-          <b>Обмеження ваги:</b> До {item.PlaceMaxWeightAllowed} кг
-        </p>
-        <p style={{ textAlign: `left` }}>
-          <b>Обмеження за габаритами (см):</b>{" "}
-          {item.SendingLimitationsOnDimensions.Width} x{" "}
-          {item.SendingLimitationsOnDimensions.Height} x{" "}
-          {item.SendingLimitationsOnDimensions.Length}
-        </p>
-        <p style={{ textAlign: `left` }}>
-          <b>Доступні послуги та сервіси:</b>
-        </p>
-        <ul style={{ textAlign: `left` }}>
-          <li>{item.BicycleParking === "1" && Services.BicycleParking}</li>
-          <li>
-            {item.CanGetMoneyTransfer === "1" && Services.CanGetMoneyTransfer}
-          </li>
-          <li>
-            {item.InternationalShipping === "1" &&
-              Services.InternationalShipping}
-          </li>
-          <li>{item.POSTerminal === "1" && Services.POSTerminal}</li>
-          <li>
-            {item.SelfServiceWorkplacesCount === "1" &&
-              Services.SelfServiceWorkplacesCount}
-          </li>
-        </ul>
-        <table>
-          <thead>
-            <tr>
-              <td></td>
-              <td>пн</td>
-              <td>вт</td>
-              <td>ср</td>
-              <td>чт</td>
-              <td>пт</td>
-              <td>сб</td>
-              <td>нд</td>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Графік роботи</td>
-              {Object.values(item.Schedule).map((items) => (
-                <td>{items}</td>
-              ))}
-            </tr>
-            <tr>
-              <td>Прийом відправлення для відправки в той же день</td>
-              {Object.values(item.Delivery).map((items) => (
-                <td>{items}</td>
-              ))}
-            </tr>
-            <tr>
-              <td>Час прибуття відправлень</td>
-              {Object.values(item.Reception).map((items) => (
-                <td>{items}</td>
-              ))}
-            </tr>
-          </tbody>
-        </table>
-      </Modal> */}
     </>
   );
 }

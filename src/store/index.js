@@ -9,9 +9,7 @@ export function saveToLocalStorage(store) {
   try {
     const serialisedState = JSON.stringify(store);
     localStorage.setItem("CMR", serialisedState);
-  } catch (e) {
-    // console.warn(e);
-  }
+  } catch (e) {}
 }
 
 export function loadFromLocalStorage() {
@@ -20,23 +18,11 @@ export function loadFromLocalStorage() {
     if (serialisedState === null) return undefined;
     return JSON.parse(serialisedState);
   } catch (e) {
-    // console.warn(e);
     return undefined;
   }
 }
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = createStore(
-  rootReducer,
-  // loadFromLocalStorage(),
-  composeEnhancer(applyMiddleware(thunk))
-);
+const store = createStore(rootReducer, composeEnhancer(applyMiddleware(thunk)));
 
 export default store;
-
-// store.subscribe(() =>
-//   // (store.getState().global !== undefined ||
-//   //   store.getState().global !== null ||
-//   //   store.getState().global !== "") &&
-//   saveToLocalStorage(store.getState().global.History)
-// );
