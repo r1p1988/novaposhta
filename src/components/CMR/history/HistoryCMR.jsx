@@ -1,5 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+
 import { RemoveHistory } from "../../../store/global/action";
 import HistoryItem from "./HistoryItem";
 
@@ -9,14 +10,6 @@ function HistoryCMR() {
   const { History } = useSelector((state) => state.global);
 
   const dispatch = useDispatch();
-
-  // const renderHistory = (list) => {
-  //   <ul>
-  //     {list.map((item) => (
-  //       <HistoryItem key={item} item={item} />
-  //     ))}
-  //   </ul>;
-  // };
 
   const ClearHistoryCMR = () => {
     dispatch(RemoveHistory());
@@ -31,7 +24,6 @@ function HistoryCMR() {
         flexDirection: `column`,
         minHeight: `100%`,
         width: 200,
-        // height: 200,
         p: 1,
         m: 1,
         backgroundColor: "#fff4f4",

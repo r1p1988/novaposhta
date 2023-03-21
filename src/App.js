@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+
 import CheckCMR from "./pages/CheckCMR";
 import DepartmentsList from "./pages/DepartmentsList";
 

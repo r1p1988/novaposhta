@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
 
 import { actFetchDepartmentsRequest } from "../../../store/global/action";
 
 import { Box, Button, TextField } from "@mui/material";
-import Input from "@mui/joy/Input";
 
 function SearchDepartments({
   city,
@@ -15,14 +14,7 @@ function SearchDepartments({
   isShow,
   setIsShow,
 }) {
-  // const [city, setCity] = useState("");
-  // const [isShow, setIsShow] = useState(false);
-
   const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   dispatch(actFetchDepartmentsRequest("Київ"));
-  // }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -48,7 +40,6 @@ function SearchDepartments({
           label="Місто"
           value={city}
           size="small"
-          // type="number"
           onChange={(e) => setCity(e.target.value)}
         />
         <TextField
@@ -56,7 +47,6 @@ function SearchDepartments({
           label="Номер відділення"
           value={WarehouseId}
           size="small"
-          // type="number"
           onChange={(e) => setWarehouseId(e.target.value)}
         />
         <Button

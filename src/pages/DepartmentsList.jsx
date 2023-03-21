@@ -12,14 +12,10 @@ function DepartmentsList() {
   const [city, setCity] = useState("Київ");
   const [WarehouseId, setWarehouseId] = useState("");
   const [isShow, setIsShow] = useState(false);
+
   const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   dispatch(actFetchDepartmentsRequest(city));
-  // }, []);
-
   useEffect(() => {
-    // if (city !== "" && WarehouseId !== "")
     dispatch(actFetchDepartmentsRequest(city, WarehouseId, currentPage));
   }, [currentPage]);
 
@@ -29,7 +25,6 @@ function DepartmentsList() {
         component="div"
         sx={{
           width: 740,
-          // height: 200,
           p: 1,
           m: `auto`,
           backgroundColor: "#ffe9e9",
@@ -46,7 +41,6 @@ function DepartmentsList() {
             display: `flex`,
             flexDirection: `row`,
             justifyContent: `center`,
-            // justifyItems: `center`,
             textAlign: `center`,
             color: "#e74646",
           }}
@@ -57,13 +51,10 @@ function DepartmentsList() {
               marginTop: "auto",
               marginBottom: "auto",
               marginRight: "10px",
-              // margin: "auto",
-              // display: "block",
             }}
             src="./img/logo1.svg"
             alt="нова пошта"
           />
-          {/* <h1>NovaPost Application</h1> */}
         </Box>
         <Header />
         <SearchDepartments

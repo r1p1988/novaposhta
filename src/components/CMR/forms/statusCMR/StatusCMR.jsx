@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
 import actFetchCMRRequest from "../../../../store/global/action";
 import {
   AddHistoryCMR,
@@ -17,7 +18,7 @@ import { TextField, Button, Box } from "@mui/material";
 function StatusTTN() {
   const { History } = useSelector((state) => state.global);
   const { CMR_Number } = useSelector((state) => state.global);
-  // const [CMR, setCMR] = useState("");
+
   const [isShow, setIsShow] = useState(false);
 
   const dispatch = useDispatch();
@@ -32,14 +33,12 @@ function StatusTTN() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // dispatch(GetCMRNumber(CMR));
     if (CMR_Number) {
       if (!CMR_Number.match(/\d{15}/)) {
         setIsShow(false);
         dispatch(AddHistoryCMR(CMR_Number));
         dispatch(actFetchCMRRequest(CMR_Number));
       } else {
-        console.log(`error`);
         setIsShow(true);
       }
     }
@@ -66,7 +65,6 @@ function StatusTTN() {
           label="Номер накладної"
           value={CMR_Number}
           size="small"
-          // type="number"
           onChange={(e) => handleCMRValue(e)}
         />
         <Button

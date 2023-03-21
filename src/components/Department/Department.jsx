@@ -1,8 +1,8 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+
 import DepartmentItem from "./DepartmentItem";
 import Pagination from "../../Pagination";
-import Modal from "../Modal/Modal";
 import { actFetchWarehouseTypesRequest } from "../../store/global/action";
 
 import {
@@ -21,7 +21,6 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           padding: `5px`,
-          // bgcolor: `#fff4f4`,
           backgroundColor: `#fff4f4`,
           lineHeight: `1.5`,
           textAlign: `center`,
@@ -40,11 +39,7 @@ function Department({ currentPage, setCurrentPage, city, WarehouseId }) {
 
   let PageSize = 20;
 
-  // const [currentPage, setCurrentPage] = useState(1);
-
   const currentTableData = useMemo(() => {
-    // const firstPageIndex = (currentPage - 1) * PageSize;
-    // const lastPageIndex = firstPageIndex + PageSize;
     const firstPageIndex = 0;
     const lastPageIndex = Departments.length;
     return Departments.slice(firstPageIndex, lastPageIndex);
@@ -53,25 +48,6 @@ function Department({ currentPage, setCurrentPage, city, WarehouseId }) {
   useEffect(() => {
     dispatch(actFetchWarehouseTypesRequest());
   }, []);
-
-  // const renderTable = (list) => {
-  //   <table>
-  //     <tr>
-  //       <th>Місто</th>
-  //       <th>Адреса</th>
-  //       <th>Обмеження ваги</th>
-  //     </tr>
-  //     {list.map((item) => (
-  //       <DepartmentItem key={item.Number} item={item} />
-  //     ))}
-  //   </table>;
-  // };
-
-  // const renderError = () => {
-  //   <div>
-  //     <p>Місто не знайдено. Будь ласка введіть коректну назву міста.</p>
-  //   </div>;
-  // };
 
   return (
     <>
@@ -107,12 +83,10 @@ function Department({ currentPage, setCurrentPage, city, WarehouseId }) {
           <Pagination
             className="pagination-bar"
             currentPage={currentPage}
-            // totalCount={Departments.length}
             totalCount={Total_Count}
             pageSize={PageSize}
             onPageChange={(page) => setCurrentPage(page)}
           />
-          {/* <Modal active={modalActive} setActive={SetModalActive} /> */}
         </>
       ) : (
         <div>
