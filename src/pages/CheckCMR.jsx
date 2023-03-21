@@ -40,10 +40,10 @@ function CheckCMR() {
               marginBottom: "auto",
               marginRight: "10px",
             }}
-            src="./img/logo.png"
+            src="./img/logo1.svg"
             alt="нова пошта"
           />
-          <h1>NovaPost Application</h1>
+          {/* <h1>NovaPost Application</h1> */}
         </Box>
         <Header />
         <StatusCMR />

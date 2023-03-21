@@ -7,11 +7,13 @@ import {
   GET_CMR_NUMBER,
   GET_TOTAL_COUNT,
   DELETE_CMR_NUMBER,
+  GET_WAREHOUSE_TYPES,
 } from "./action";
 
 const INITIAL_STATE = {
   CMR: [],
   CMR_Number: ``,
+  Warehouse: [],
   Departments: ``,
   Total_Count: "",
   History: [],
@@ -29,6 +31,8 @@ export default function cmrReducer(state = INITIAL_STATE, { type, payload }) {
       return { ...state, Total_Count: payload };
     case GET_DEPARTMENTS:
       return { ...state, Departments: payload };
+    case GET_WAREHOUSE_TYPES:
+      return { ...state, Warehouse: payload };
     case GET_HISTORY_CMR:
       return { ...state, History: payload };
     case ADD_HISTORY_CMR:
