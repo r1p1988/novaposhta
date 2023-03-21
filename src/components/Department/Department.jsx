@@ -5,7 +5,32 @@ import Pagination from "../../Pagination";
 import Modal from "../Modal/Modal";
 import { actFetchWarehouseTypesRequest } from "../../store/global/action";
 
-import { Table, TableBody, TableHead, TableRow } from "@mui/material";
+import {
+  Table,
+  TableBody,
+  TableHead,
+  TableRow,
+  TableCell,
+  ThemeProvider,
+  createTheme,
+} from "@mui/material";
+
+const theme = createTheme({
+  components: {
+    MuiTableCell: {
+      styleOverrides: {
+        root: {
+          padding: `5px`,
+          // bgcolor: `#fff4f4`,
+          backgroundColor: `#fff4f4`,
+          lineHeight: `1.5`,
+          textAlign: `center`,
+          fontWeight: `bold`,
+        },
+      },
+    },
+  },
+});
 
 function Department({ currentPage, setCurrentPage, city, WarehouseId }) {
   const { Departments } = useSelector((state) => state.global);
@@ -58,16 +83,19 @@ function Department({ currentPage, setCurrentPage, city, WarehouseId }) {
               color: `#1B1212`,
               border: "1px solid #b3abab",
               borderRadius: 2,
+              padding: `5px`,
             }}
             stickyHeader
             aria-label="sticky table"
           >
             <TableHead>
               <TableRow>
-                <th>Місто</th>
-                <th>Відділення / Поштомат</th>
-                <th>Адреса</th>
-                <th>Обмеження ваги</th>
+                <ThemeProvider theme={theme}>
+                  <TableCell>Місто</TableCell>
+                  <TableCell>Відділення / Поштомат</TableCell>
+                  <TableCell>Адреса</TableCell>
+                  <TableCell>Обмеження ваги</TableCell>
+                </ThemeProvider>
               </TableRow>
             </TableHead>
             <TableBody>
