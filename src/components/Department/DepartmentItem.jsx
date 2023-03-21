@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 
 import {
   Table,
@@ -67,6 +68,11 @@ function DepartmentItem({ item }) {
   const handleOpen = () => SetModalActive(true);
   const handleClose = () => SetModalActive(false);
 
+  const { Warehouse } = useSelector((state) => state.global);
+
+  const WareHouseTypes = Warehouse.map((items) => {
+    if (items.Ref === item.TypeOfWarehouse) return items.Description;
+  });
   // const handleSetModalActive = () => {
   //   SetModalActive(true);
   // };
@@ -141,7 +147,7 @@ function DepartmentItem({ item }) {
               <b>Цифрова адреса:</b> {item.WarehouseIndex}
             </p>
             <p style={{ textAlign: `left`, margin: `3px` }}>
-              <b>Тип:</b>
+              <b>Тип:</b> {WareHouseTypes}
             </p>
             <p style={{ textAlign: `left`, margin: `3px` }}>
               <b>Обмеження ваги:</b> До {item.PlaceMaxWeightAllowed} кг

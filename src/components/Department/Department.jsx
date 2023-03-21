@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import DepartmentItem from "./DepartmentItem";
 import Pagination from "../../Pagination";
 import Modal from "../Modal/Modal";
-import actFetchDepartmentsRequest from "../../store/global/action";
+import { actFetchWarehouseTypesRequest } from "../../store/global/action";
 
 import { Table, TableBody, TableHead, TableRow } from "@mui/material";
 
@@ -25,11 +25,9 @@ function Department({ currentPage, setCurrentPage, city, WarehouseId }) {
     return Departments.slice(firstPageIndex, lastPageIndex);
   }, [Departments, currentPage]);
 
-  console.log(currentTableData);
-
-  // useEffect(() => {
-  //   dispatch(actFetchDepartmentsRequest(currentPage));
-  // }, [Departments]);
+  useEffect(() => {
+    dispatch(actFetchWarehouseTypesRequest());
+  }, []);
 
   // const renderTable = (list) => {
   //   <table>

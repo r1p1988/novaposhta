@@ -8,6 +8,7 @@ export const REMOVE_HISTORY_CMR = `REMOVE_HISTORY_CMR`;
 export const GET_CMR_NUMBER = `GET_CMR_NUMBER`;
 export const GET_TOTAL_COUNT = `GET_TOTAL_COUNT`;
 export const DELETE_CMR_NUMBER = `DELETE_CMR_NUMBER`;
+export const GET_WAREHOUSE_TYPES = `GET_WAREHOUSE_TYPES`;
 
 const settings = (KEY, CMR) => {
   return {
@@ -25,20 +26,14 @@ const settings = (KEY, CMR) => {
   };
 };
 
-// const settings3 = (KEY, CMR) => {
-//   return {
-//     apiKey: `${KEY}`,
-//     modelName: "InternetDocument",
-//     calledMethod: "findDocumentByData",
-//     methodProperties: {
-//       DateFrom: "07.12.2022",
-//       DateTo: "08.04.2023",
-//       FindByData: `${CMR}`,
-//       Limit: 10,
-//       Page: 0,
-//     },
-//   };
-// };
+const WarehouseTypes = (KEY) => {
+  return {
+    apiKey: `${KEY}`,
+    modelName: "Address",
+    calledMethod: "getWarehouseTypes",
+    methodProperties: {},
+  };
+};
 
 const settings2 = (KEY, city, WarehouseId, page = 1) => {
   return {
@@ -92,6 +87,22 @@ const actFetchCMRRequest = (CMR) => {
 
 export default actFetchCMRRequest;
 
+export const actFetchWarehouseTypesRequest = () => {
+  return async (dispatch) => {
+    try {
+      const response = await fetch(API, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(WarehouseTypes(API_KEY)),
+      });
+      const data2 = await response.json();
+      dispatch(GetWarehouseTypes(data2.data));
+    } catch (error) {}
+  };
+};
+
 export function GetDepartments(payload) {
   return {
     type: "GET_DEPARTMENTS",
@@ -142,6 +153,13 @@ export function DeleteCMRNumber() {
 export function GetTotalCount(payload) {
   return {
     type: "GET_TOTAL_COUNT",
+    payload: payload,
+  };
+}
+
+export function GetWarehouseTypes(payload) {
+  return {
+    type: "GET_WAREHOUSE_TYPES",
     payload: payload,
   };
 }
