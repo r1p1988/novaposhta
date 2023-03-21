@@ -195,6 +195,7 @@ function DepartmentItem({ item }) {
                 borderCollapse: `inherit`,
                 textAlign: `center`,
                 justifyContent: `center`,
+                marginTop: `10px`,
                 // size: "small",
                 // height: `100`,
               }}
