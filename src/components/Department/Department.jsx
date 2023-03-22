@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import DepartmentItem from "./DepartmentItem";
@@ -31,9 +31,8 @@ const theme = createTheme({
   },
 });
 
-function Department({ currentPage, setCurrentPage, city, WarehouseId }) {
-  const { Departments } = useSelector((state) => state.global);
-  const { Total_Count } = useSelector((state) => state.global);
+function Department({ currentPage, setCurrentPage }) {
+  const { Departments, Total_Count } = useSelector((state) => state.global);
 
   const dispatch = useDispatch();
 

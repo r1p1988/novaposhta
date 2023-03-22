@@ -16,8 +16,7 @@ import {
 import { TextField, Button, Box } from "@mui/material";
 
 function StatusTTN() {
-  const { History } = useSelector((state) => state.global);
-  const { CMR_Number } = useSelector((state) => state.global);
+  const { History, CMR_Number } = useSelector((state) => state.global);
 
   const [isShow, setIsShow] = useState(false);
 
