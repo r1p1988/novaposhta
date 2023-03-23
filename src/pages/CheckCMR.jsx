@@ -13,7 +13,8 @@ function CheckCMR() {
       <Box
         component="div"
         sx={{
-          width: 740,
+          // width: 740,
+          // width: `50%`,
           p: 1,
           m: `auto`,
           backgroundColor: "#ffe9e9",
@@ -50,8 +51,12 @@ function CheckCMR() {
         <Box
           component="div"
           sx={{
-            display: "flex",
-            width: 700,
+            // display: "flex",
+            display: { xs: `flex` },
+            flexDirection: { xs: `column`, sm: `row` },
+            alignItems: { xs: `center` },
+            justifyContent: { md: `center` },
+            // width: `100%`,
             p: 1,
             m: 1,
           }}

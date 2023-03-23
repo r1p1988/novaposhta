@@ -10,8 +10,10 @@ function DetailsCMR() {
     <Box
       component="div"
       sx={{
-        width: 500,
-        height: 200,
+        width: { md: `500px` },
+        minWidth: { sm: `300px` },
+        minHeight: { xs: `175px` },
+        // height: 200,
         p: 1,
         m: 1,
         backgroundColor: "#fff4f4",

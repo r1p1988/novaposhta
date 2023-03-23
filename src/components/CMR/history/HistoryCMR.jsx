@@ -22,8 +22,9 @@ function HistoryCMR() {
       sx={{
         display: `flex`,
         flexDirection: `column`,
-        minHeight: `100%`,
-        width: 200,
+        // minHeight: `100%`,
+        width: { xs: `50%`, md: `200px` },
+        justifyContent: { xs: `center` },
         p: 1,
         m: 1,
         backgroundColor: "#fff4f4",
