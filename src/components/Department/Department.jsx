@@ -13,6 +13,7 @@ import {
   TableCell,
   ThemeProvider,
   createTheme,
+  Box,
 } from "@mui/material";
 
 const theme = createTheme({
@@ -51,7 +52,18 @@ function Department({ currentPage, setCurrentPage }) {
   return (
     <>
       {Departments.length !== 0 ? (
-        <>
+        <Box
+          component="div"
+          sx={{
+            display: `flex`,
+            flexDirection: `column`,
+            justifyContent: `center`,
+            textAlign: `center`,
+            // width: { md: `700px` },
+            maxWidth: { md: `700px` },
+            margin: `auto`,
+          }}
+        >
           <Table
             sx={{
               bgcolor: `#fff4f4`,
@@ -59,6 +71,8 @@ function Department({ currentPage, setCurrentPage }) {
               border: "1px solid #b3abab",
               borderRadius: 2,
               padding: `5px`,
+              marginTop: `15px`,
+              // width: { md: `700px` },
             }}
             stickyHeader
             aria-label="sticky table"
@@ -86,7 +100,7 @@ function Department({ currentPage, setCurrentPage }) {
             pageSize={PageSize}
             onPageChange={(page) => setCurrentPage(page)}
           />
-        </>
+        </Box>
       ) : (
         <div>
           <p>

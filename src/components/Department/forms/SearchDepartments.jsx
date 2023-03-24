@@ -28,22 +28,33 @@ function SearchDepartments({
   };
   return (
     <>
+      {/* <Box
+        sx={{ display: `flex`, flexDirection: { xs: `column`, sm: `row` } }}
+        component="div"
+      > */}
       <Box
-        sx={{ mb: 2 }}
+        sx={{
+          mb: 2,
+          display: `flex`,
+          flexDirection: { xs: `column`, sm: `row` },
+          width: { xs: `350px`, sm: `100%` },
+          justifyContent: `center`,
+          margin: `auto`,
+        }}
         component="form"
         noValidate
         autoComplete="off"
         onSubmit={(e) => handleSubmit(e)}
       >
         <TextField
-          sx={{ mr: 2 }}
+          sx={{ mr: { sm: 2 }, marginBottom: { xs: `10px`, sm: `0` } }}
           label="Місто"
           value={city}
           size="small"
           onChange={(e) => setCity(e.target.value)}
         />
         <TextField
-          sx={{ mr: 2 }}
+          sx={{ mr: { sm: 2 }, marginBottom: { xs: `10px`, sm: `0` } }}
           label="Номер відділення"
           value={WarehouseId}
           size="small"
@@ -57,6 +68,7 @@ function SearchDepartments({
           Знайти
         </Button>
       </Box>
+      {/* </Box> */}
       {isShow ? (
         <Box sx={{ color: `black` }} component="div">
           Місто чи відділення не знайдено.
