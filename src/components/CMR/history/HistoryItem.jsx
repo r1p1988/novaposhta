@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 
 import actFetchCMRRequest, { GetCMRNumber } from "../../../store/global/action";
 
-import { ListItemButton, ListItemText } from "@mui/material";
+import { ListItemButton, ListItemText, ListItem } from "@mui/material";
 
 function HistoryItem({ item }) {
   const dispatch = useDispatch();
@@ -14,9 +14,11 @@ function HistoryItem({ item }) {
   };
 
   return (
-    <ListItemButton onClick={(e) => handleCheckCMR(item, e)}>
-      <ListItemText sx={{ textAlign: `center` }} primary={item} />
-    </ListItemButton>
+    <ListItem sx={{ padding: `0` }}>
+      <ListItemButton onClick={(e) => handleCheckCMR(item, e)}>
+        <ListItemText sx={{ textAlign: `center` }} primary={item} />
+      </ListItemButton>
+    </ListItem>
   );
 }
 

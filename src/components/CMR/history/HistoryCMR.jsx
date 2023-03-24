@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RemoveHistory } from "../../../store/global/action";
 import HistoryItem from "./HistoryItem";
 
-import { Box, Button, List } from "@mui/material";
+import { Box, Button, List, ListSubheader } from "@mui/material";
 
 function HistoryCMR() {
   const { History } = useSelector((state) => state.global);
@@ -22,8 +22,10 @@ function HistoryCMR() {
       sx={{
         display: `flex`,
         flexDirection: `column`,
-        // minHeight: `100%`,
-        width: { xs: `50%`, md: `200px` },
+        minHeight: { xs: `200px`, sm: `250px` },
+        width: { xs: `50%`, sm: `30%`, md: `20%`, lg: `15%` },
+        // overflow: `auto`,
+        maxHeight: `200px`,
         justifyContent: { xs: `center` },
         p: 1,
         m: 1,
@@ -35,13 +37,25 @@ function HistoryCMR() {
         textAlign: `center`,
       }}
     >
-      <p style={{ flex: `1 1 auto` }}>Історія</p>
-      {History === undefined || History.length === 0 ? null : (
-        <List sx={{ flex: `1 1 auto` }}>
-          {History.map((item) => (
-            <HistoryItem key={item} item={item} />
-          ))}
-        </List>
+      {/* <p style={{ flex: `1 1 auto` }}>Історія</p> */}
+      {History === undefined || History.length === 0 ? (
+        <ListSubheader
+          sticky
+          sx={{ flex: `1 1 auto`, backgroundColor: "#fff4f4" }}
+        >
+          Історія
+        </ListSubheader>
+      ) : (
+        <>
+          <ListSubheader sticky sx={{ backgroundColor: "#fff4f4" }}>
+            Історія
+          </ListSubheader>
+          <List sx={{ flex: `1 1 auto`, overflow: `auto` }}>
+            {History.map((item) => (
+              <HistoryItem key={item} item={item} />
+            ))}
+          </List>
+        </>
       )}
       <Button
         sx={{ textTransform: `none` }}
