@@ -24,7 +24,7 @@ function DepartmentsList() {
       <Box
         component="div"
         sx={{
-          width: 740,
+          // width: 740,
           p: 1,
           m: `auto`,
           backgroundColor: "#ffe9e9",

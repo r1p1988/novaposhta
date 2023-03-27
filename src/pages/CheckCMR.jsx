@@ -54,6 +54,7 @@ function CheckCMR() {
             // display: "flex",
             display: { xs: `flex` },
             flexDirection: { xs: `column`, sm: `row` },
+            height: { sm: `300px` },
             alignItems: { xs: `center` },
             justifyContent: { md: `center` },
             // width: `100%`,

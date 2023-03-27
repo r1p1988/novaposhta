@@ -11,9 +11,8 @@ function DetailsCMR() {
       component="div"
       sx={{
         width: { md: `500px` },
-        minWidth: { sm: `300px` },
-        minHeight: { xs: `175px` },
-        // height: 200,
+        minWidth: { xs: `350px` },
+        minHeight: { xs: `200px`, sm: `250px` },
         p: 1,
         m: 1,
         backgroundColor: "#fff4f4",
