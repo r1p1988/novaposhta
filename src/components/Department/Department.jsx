@@ -16,6 +16,16 @@ import {
   Box,
 } from "@mui/material";
 
+const breakpoints = {
+  values: {
+    xs: 0,
+    sm: 600,
+    md: 900,
+    lg: 1200,
+    xl: 1536,
+  },
+};
+
 const theme = createTheme({
   components: {
     MuiTableCell: {
@@ -26,6 +36,10 @@ const theme = createTheme({
           lineHeight: `1.5`,
           textAlign: `center`,
           fontWeight: `bold`,
+          // fontSize: { xs: `0.6` },
+          [`@media screen and (max-width: ${breakpoints.values.sm}px)`]: {
+            fontSize: "0.6rem",
+          },
         },
       },
     },

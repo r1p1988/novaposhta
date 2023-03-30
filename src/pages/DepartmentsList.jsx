@@ -25,9 +25,13 @@ function DepartmentsList() {
       <Box
         component="div"
         sx={{
+          // maxHeight: "100%",
+          // maxWidth: "100vw",
+          // height: "100vh",
+          // width: "100%",
           p: 1,
           m: `auto`,
-          backgroundColor: "#ffe9e9",
+          // backgroundColor: "#ffe9e9",
           color: `#fff`,
           border: "1px solid",
           borderRadius: 2,
