@@ -15,6 +15,16 @@ import {
   createTheme,
 } from "@mui/material";
 
+const breakpoints = {
+  values: {
+    xs: 0,
+    sm: 600,
+    md: 900,
+    lg: 1200,
+    xl: 1536,
+  },
+};
+
 const style = {
   position: "absolute",
   top: "50%",
@@ -34,6 +44,21 @@ const theme = createTheme({
         root: {
           padding: `4px`,
           lineHeight: `1.5`,
+        },
+      },
+    },
+  },
+});
+
+const theme1 = createTheme({
+  components: {
+    MuiTableCell: {
+      styleOverrides: {
+        root: {
+          // fontSize: { xs: `0.6rem` },
+          [`@media screen and (max-width: ${breakpoints.values.sm}px)`]: {
+            fontSize: "0.6rem",
+          },
         },
       },
     },
@@ -75,40 +100,42 @@ function DepartmentItem({ item }) {
   return (
     <>
       <TableRow>
-        <TableCell
-          sx={{
-            textAlign: `center`,
-          }}
-        >
-          {item.CityDescription}
-        </TableCell>
-        <TableCell
-          sx={{
-            textAlign: `center`,
-            fontWeight: `bold`,
-          }}
-        >
-          <span
-            onClick={() => handleOpen()}
-            style={{ borderBottom: `1px solid #999`, cursor: `pointer` }}
+        <ThemeProvider theme={theme1}>
+          <TableCell
+            sx={{
+              textAlign: `center`,
+            }}
           >
-            {WarehouseCategory[item.CategoryOfWarehouse]} {item.Number}
-          </span>
-        </TableCell>
-        <TableCell
-          sx={{
-            textAlign: `left`,
-          }}
-        >
-          {item.ShortAddress}
-        </TableCell>
-        <TableCell
-          sx={{
-            textAlign: `center`,
-          }}
-        >
-          До {item.PlaceMaxWeightAllowed} кг
-        </TableCell>
+            {item.CityDescription}
+          </TableCell>
+          <TableCell
+            sx={{
+              textAlign: `center`,
+              fontWeight: `bold`,
+            }}
+          >
+            <span
+              onClick={() => handleOpen()}
+              style={{ borderBottom: `1px solid #999`, cursor: `pointer` }}
+            >
+              {WarehouseCategory[item.CategoryOfWarehouse]} {item.Number}
+            </span>
+          </TableCell>
+          <TableCell
+            sx={{
+              textAlign: `left`,
+            }}
+          >
+            {item.ShortAddress}
+          </TableCell>
+          <TableCell
+            sx={{
+              textAlign: `center`,
+            }}
+          >
+            До {item.PlaceMaxWeightAllowed} кг
+          </TableCell>
+        </ThemeProvider>
       </TableRow>
       <Modal
         open={modalActive}

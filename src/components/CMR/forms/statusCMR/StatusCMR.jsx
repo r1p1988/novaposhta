@@ -60,14 +60,25 @@ function StatusTTN() {
   return (
     <>
       <Box
-        sx={{ mb: 2 }}
+        sx={{
+          width: { xs: `50%` },
+          alignItems: `center`,
+          margin: `auto`,
+          mb: 2,
+          display: `flex`,
+          flexDirection: { xs: `column`, sm: `row` },
+          justifyContent: `center`,
+        }}
         component="form"
         noValidate
         autoComplete="off"
         onSubmit={(e) => handleSubmit(e)}
       >
         <TextField
-          sx={{ mr: 2 }}
+          sx={{
+            mr: { xs: 0, sm: 2 },
+            mb: { xs: 1, sm: 0 },
+          }}
           label="Номер накладної"
           value={CMR_Number}
           size="small"
