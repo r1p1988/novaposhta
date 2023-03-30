@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import actFetchCMRRequest from "../../../../store/global/action";
@@ -7,6 +7,9 @@ import {
   GetHistoryCMR,
   GetCMRNumber,
   DeleteCMRNumber,
+  actFetchMessageCodeRequest,
+  RemoveError,
+  RemoveMessageCode,
 } from "../../../../store/global/action";
 import {
   loadFromLocalStorage,
@@ -16,30 +19,32 @@ import {
 import { TextField, Button, Box } from "@mui/material";
 
 function StatusTTN() {
-  const { History, CMR_Number } = useSelector((state) => state.global);
-
-  const [isShow, setIsShow] = useState(false);
+  const { CMR, History, CMR_Number, hasErrors, MessageCode } = useSelector(
+    (state) => state.global
+  );
 
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    localStorage.length > 0 && dispatch(GetHistoryCMR(loadFromLocalStorage()));
+  }, []);
 
   useEffect(() => {
     History.length !== 0 && saveToLocalStorage(History);
   }, [History]);
 
   useEffect(() => {
-    localStorage.length > 0 && dispatch(GetHistoryCMR(loadFromLocalStorage()));
-  }, []);
+    if (hasErrors) {
+      dispatch(actFetchMessageCodeRequest(hasErrors));
+    } else {
+      CMR_Number !== "" && dispatch(AddHistoryCMR(CMR_Number));
+    }
+  }, [CMR, hasErrors]);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     if (CMR_Number) {
-      if (!CMR_Number.match(/\d{15}/)) {
-        setIsShow(false);
-        dispatch(AddHistoryCMR(CMR_Number));
-        dispatch(actFetchCMRRequest(CMR_Number));
-      } else {
-        setIsShow(true);
-      }
+      dispatch(actFetchCMRRequest(CMR_Number));
     }
   };
 
@@ -47,6 +52,8 @@ function StatusTTN() {
     dispatch(GetCMRNumber(e.target.value.replace(/[^0-9]+/g, "")));
     if (!e.target.value) {
       dispatch(DeleteCMRNumber());
+      dispatch(RemoveError());
+      dispatch(RemoveMessageCode());
     }
   };
 
@@ -74,11 +81,11 @@ function StatusTTN() {
           Відстежити
         </Button>
       </Box>
-      {isShow && (
-        <Box sx={{ color: `black` }} component="div">
-          Номер не знайден
+      {MessageCode ? (
+        <Box sx={{ color: `black`, mt: 1 }} component="div">
+          {MessageCode}
         </Box>
-      )}
+      ) : null}
     </>
   );
 }

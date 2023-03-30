@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import Box from "@mui/material/Box";
 
 function DetailsCMR() {
-  const { CMR } = useSelector((state) => state.global);
+  const { CMR, MessageCode } = useSelector((state) => state.global);
 
   return (
     <Box
@@ -22,7 +22,7 @@ function DetailsCMR() {
         textAlign: `left`,
       }}
     >
-      {!Array.isArray(CMR) && CMR ? (
+      {!Array.isArray(CMR) && CMR && !MessageCode ? (
         <>
           <p>
             <b>Статус доставки:</b> {CMR.Status}
