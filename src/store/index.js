@@ -6,10 +6,12 @@ import global from "./global/reducer";
 const rootReducer = combineReducers({ global });
 
 export function saveToLocalStorage(store) {
-  try {
-    const serialisedState = JSON.stringify(store);
-    localStorage.setItem("CMR", serialisedState);
-  } catch (e) {}
+  if (store !== "") {
+    try {
+      const serialisedState = JSON.stringify(store);
+      localStorage.setItem("CMR", serialisedState);
+    } catch (e) {}
+  }
 }
 
 export function loadFromLocalStorage() {

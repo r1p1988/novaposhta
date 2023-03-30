@@ -50,66 +50,53 @@ function Department({ currentPage, setCurrentPage }) {
   }, []);
 
   return (
-    <>
-      {Departments.length !== 0 ? (
-        <Box
-          component="div"
-          sx={{
-            display: `flex`,
-            flexDirection: `column`,
-            justifyContent: `center`,
-            textAlign: `center`,
-            // width: { md: `700px` },
-            maxWidth: { md: `700px` },
-            margin: `auto`,
-          }}
-        >
-          <Table
-            sx={{
-              bgcolor: `#fff4f4`,
-              color: `#1B1212`,
-              border: "1px solid #b3abab",
-              borderRadius: 2,
-              padding: `5px`,
-              marginTop: `15px`,
-              // width: { md: `700px` },
-            }}
-            stickyHeader
-            aria-label="sticky table"
-          >
-            <TableHead>
-              <TableRow>
-                <ThemeProvider theme={theme}>
-                  <TableCell>Місто</TableCell>
-                  <TableCell>Відділення / Поштомат</TableCell>
-                  <TableCell>Адреса</TableCell>
-                  <TableCell>Обмеження ваги</TableCell>
-                </ThemeProvider>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {currentTableData.map((item, idx) => (
-                <DepartmentItem key={item.SiteKey} item={item} />
-              ))}
-            </TableBody>
-          </Table>
-          <Pagination
-            className="pagination-bar"
-            currentPage={currentPage}
-            totalCount={Total_Count}
-            pageSize={PageSize}
-            onPageChange={(page) => setCurrentPage(page)}
-          />
-        </Box>
-      ) : (
-        <div>
-          <p>
-            Місто або номер відділення не знайдено. Будь ласка введіть коректні
-            дані.
-          </p>
-        </div>
-      )}
-    </>
+    <Box
+      component="div"
+      sx={{
+        display: `flex`,
+        flexDirection: `column`,
+        justifyContent: `center`,
+        textAlign: `center`,
+        maxWidth: { md: `700px` },
+        margin: `auto`,
+      }}
+    >
+      <Table
+        sx={{
+          bgcolor: `#fff4f4`,
+          color: `#1B1212`,
+          border: "1px solid #b3abab",
+          borderRadius: 2,
+          padding: `5px`,
+          marginTop: `15px`,
+        }}
+        stickyHeader
+        aria-label="sticky table"
+      >
+        <TableHead>
+          <TableRow>
+            <ThemeProvider theme={theme}>
+              <TableCell>Місто</TableCell>
+              <TableCell>Відділення / Поштомат</TableCell>
+              <TableCell>Адреса</TableCell>
+              <TableCell>Обмеження ваги</TableCell>
+            </ThemeProvider>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {currentTableData.map((item, idx) => (
+            <DepartmentItem key={item.SiteKey} item={item} />
+          ))}
+        </TableBody>
+      </Table>
+      <Pagination
+        className="pagination-bar"
+        currentPage={currentPage}
+        totalCount={Total_Count}
+        pageSize={PageSize}
+        onPageChange={(page) => setCurrentPage(page)}
+      />
+    </Box>
   );
 }
 

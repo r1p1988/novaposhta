@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Department from "../components/Department/Department";
 import SearchDepartments from "../components/Department/forms/SearchDepartments";
 import Header from "../components/header/Header";
@@ -11,7 +11,8 @@ function DepartmentsList() {
   const [currentPage, setCurrentPage] = useState(1);
   const [city, setCity] = useState("Київ");
   const [WarehouseId, setWarehouseId] = useState("");
-  const [isShow, setIsShow] = useState(false);
+
+  const { DepMessageCode, Departments } = useSelector((state) => state.global);
 
   const dispatch = useDispatch();
 
@@ -24,7 +25,6 @@ function DepartmentsList() {
       <Box
         component="div"
         sx={{
-          // width: 740,
           p: 1,
           m: `auto`,
           backgroundColor: "#ffe9e9",
@@ -63,17 +63,19 @@ function DepartmentsList() {
           WarehouseId={WarehouseId}
           setWarehouseId={setWarehouseId}
           setCurrentPage={setCurrentPage}
-          isShow={isShow}
-          setIsShow={setIsShow}
         />
-        {!isShow ? (
+        {DepMessageCode !== "" || Departments.length === 0 ? (
+          <Box sx={{ color: `black`, mt: 1 }} component="div">
+            {DepMessageCode}
+          </Box>
+        ) : (
           <Department
             currentPage={currentPage}
             setCurrentPage={setCurrentPage}
             city={city}
             WarehouseId={WarehouseId}
           />
-        ) : null}
+        )}
       </Box>
     </>
   );
