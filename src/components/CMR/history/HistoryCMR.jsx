@@ -24,7 +24,6 @@ function HistoryCMR() {
         flexDirection: `column`,
         minHeight: { xs: `200px`, sm: `250px` },
         width: { xs: `50%`, sm: `30%`, md: `20%`, lg: `15%` },
-        // overflow: `auto`,
         maxHeight: `200px`,
         justifyContent: { xs: `center` },
         p: 1,
@@ -37,7 +36,6 @@ function HistoryCMR() {
         textAlign: `center`,
       }}
     >
-      {/* <p style={{ flex: `1 1 auto` }}>Історія</p> */}
       {History === undefined || History.length === 0 ? (
         <ListSubheader
           sticky

@@ -19,7 +19,7 @@ export const REMOVE_DEPARTMENT_ERROR = `REMOVE_DEPARTMENT_ERROR`;
 export const REMOVE_DEPARTMENT_MESSAGE_CODE = `REMOVE_DEPARTMENT_MESSAGE_CODE`;
 export const REMOVE_DEPARTMENTS = `REMOVE_DEPARTMENTS`;
 
-const settings = (KEY, CMR) => {
+const StatusDocuments = (KEY, CMR) => {
   return {
     apiKey: `${KEY}`,
     modelName: "TrackingDocument",
@@ -55,7 +55,7 @@ const WarehouseTypes = (KEY) => {
   };
 };
 
-const settings2 = (KEY, city, WarehouseId, page = 1) => {
+const Warehouses = (KEY, city, WarehouseId, page = 1) => {
   return {
     apiKey: `${KEY}`,
     modelName: "Address",
@@ -80,7 +80,7 @@ export const actFetchDepartmentsRequest = (city, WarehouseId, page) => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(settings2(API_KEY, city, WarehouseId, page)),
+        body: JSON.stringify(Warehouses(API_KEY, city, WarehouseId, page)),
       });
       const data2 = await response.json();
       if (data2.data.length > 0) {
@@ -96,7 +96,6 @@ export const actFetchDepartmentsRequest = (city, WarehouseId, page) => {
           case !city && WarehouseId:
             err = 20002102226;
             break;
-          // case city && WarehouseId:
           default:
             dispatch(
               GetMessageCodeDepartment("Місто чи відділеня не знайдено")
@@ -119,7 +118,7 @@ const actFetchCMRRequest = (CMR) => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(settings(API_KEY, CMR)),
+        body: JSON.stringify(StatusDocuments(API_KEY, CMR)),
       });
       const data2 = await response.json();
       if (data2.success === true) {
